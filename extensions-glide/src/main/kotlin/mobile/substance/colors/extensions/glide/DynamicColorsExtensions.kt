@@ -19,7 +19,8 @@ inline fun <reified CP : ColorPackage> RequestManager.loadWithColors(model: Any?
     return `as`(DynamicColorsWrapper::class.java)
             .load(model)
             .apply(RequestOptions()
-                    .set(Option.memory(DynamicColorsTranscoder.TRANSCODE_TYPE_PARAM), CP::class.java))
+                    .set(Option.memory(DynamicColorsTranscoder.TRANSCODE_TYPE_PARAM), CP::class.java)
+                    .disallowHardwareConfig())
             as RequestBuilder<DynamicColorsWrapper<CP>>
 }
 
