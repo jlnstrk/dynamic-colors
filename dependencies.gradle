@@ -1,4 +1,5 @@
 ext.versions = [
+        mavenPlugin: "2.0",
         name: "1.0.0",
         code: 1,
         minSdk : 15,
