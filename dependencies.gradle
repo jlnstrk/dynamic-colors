@@ -1,0 +1,11 @@
+ext.versions = [
+        name: "1.0.0",
+        code: 1,
+        minSdk : 15,
+        targetSdk: 26,
+        compileSdk: 27,
+        buildTools: "27.0.3",
+        kotlin : "1.2.0",
+        supportLibrary : "27.0.2",
+        glide : "4.5.0"
+]

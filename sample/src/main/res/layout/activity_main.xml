@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioGroup
+            android:id="@+id/radioGroupAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            android:checkedButton="@+id/accent_neutral"
+            android:orientation="vertical"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accentText">
+
+            <RadioButton
+                android:id="@+id/accent_neutral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accent neutral" />
+
+            <RadioButton
+                android:id="@+id/accent_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accent light" />
+
+            <RadioButton
+                android:id="@+id/accent_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accent dark" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/primaryText"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="PRIMARY"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/primaryDarkText"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="PRIMARY DARK"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/primaryText" />
+
+        <TextView
+            android:id="@+id/accentText"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="ACCENT"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/primaryDarkText" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="192dp"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <Button
+            android:id="@+id/extractUIColors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:text="GENERATE"
+            app:layout_constraintEnd_toStartOf="@+id/generate_strict"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupPrimary" />
+
+        <Button
+            android:id="@+id/generate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:text="GENERATE"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/extractUIColors"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupPrimary" />
+
+        <EditText
+            android:id="@+id/source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:hint="Source"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:text="https://upload.wikimedia.org/wikipedia/commons/0/03/Panthera_pardus_close_up.jpg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/extractUIColors" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            android:checkedButton="@+id/primary_neutral"
+            android:orientation="vertical"
+            app:layout_constraintHorizontal_bias="0.446"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/accentText">
+
+            <RadioButton
+                android:id="@+id/primary_neutral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Primary neutral" />
+
+            <RadioButton
+                android:id="@+id/primary_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Primary light" />
+
+            <RadioButton
+                android:id="@+id/primary_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Primary dark" />
+
+        </RadioGroup>
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
+
