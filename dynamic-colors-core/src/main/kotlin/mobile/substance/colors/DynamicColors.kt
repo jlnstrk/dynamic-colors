@@ -20,21 +20,26 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.net.Uri
+import android.support.annotation.WorkerThread
 import android.support.v7.graphics.Palette
 import android.support.v7.graphics.Target
 import java.io.File
 
+@WorkerThread
 class DynamicColors private constructor(private val from: BitmapSource) {
 
     fun extractDominantColor() = extractDominantColor(from)
 
-    fun extractLightUIColors() = extractUIColors(from, MODE_RANGE_PRIMARY_LIGHT or MODE_RANGE_ACCENT_LIGHT)
+    fun extractLightUiColors() = extractUiColors(from, MODE_RANGE_PRIMARY_LIGHT
+            or MODE_RANGE_ACCENT_LIGHT)
 
-    fun extractDarktUIColors() = extractUIColors(from, MODE_RANGE_PRIMARY_DARK or MODE_RANGE_ACCENT_DARK)
+    fun extractDarkUiColors() = extractUiColors(from, MODE_RANGE_PRIMARY_DARK
+            or MODE_RANGE_ACCENT_DARK)
 
-    fun extractNeutralUIColors() = extractUIColors(from, MODE_RANGE_PRIMARY_NEUTRAL or MODE_RANGE_ACCENT_NEUTRAL)
+    fun extractNeutralUiColors() = extractUiColors(from, MODE_RANGE_PRIMARY_NEUTRAL
+            or MODE_RANGE_ACCENT_NEUTRAL)
 
-    fun extractUIColors(mode: Int) = extractUIColors(from, mode)
+    fun extractUiColors(mode: Int) = extractUiColors(from, mode)
 
     private fun extractDominantColor(source: BitmapSource): DominantColorPackage {
         val bitmap = source.getBitmap()
@@ -54,7 +59,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
         return DynamicColorsOptions.defaultDominantColor.invoke()
     }
 
-    private fun extractUIColors(source: BitmapSource, mode: Int): UIColorPackage {
+    private fun extractUiColors(source: BitmapSource, mode: Int): UIColorPackage {
         val bitmap = source.getBitmap()
         if (bitmap != null) {
             val primaryTarget = Target.Builder()
@@ -92,6 +97,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
         return DynamicColorsOptions.defaultUIColors.invoke()
     }
 
+    @WorkerThread
     interface BitmapSource {
         fun getBitmap(): Bitmap?
     }

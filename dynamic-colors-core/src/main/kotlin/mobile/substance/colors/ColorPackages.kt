@@ -23,11 +23,11 @@ package mobile.substance.colors
 sealed class ColorPackage
 
 class UIColorPackage(val primaryColor: Int, val primaryDarkColor: Int,
-                     val primaryTextColor: Int, val primarySecondaryTextColor: Int, val primaryDisabledTextColor: Int,
+                     val primaryPrimaryTextColor: Int, val primarySecondaryTextColor: Int, val primaryDisabledTextColor: Int,
                      val accentColor: Int, val accentDarkColor: Int,
-                     val accentTextColor: Int, val accentSecondaryTextColor: Int, val accentDisabledTextColor: Int,
-                     val primaryIconActiveColor: Int, val primaryIconInactiveColor: Int,
-                     val accentIconActiveColor: Int, val accentIconInactiveColor: Int): ColorPackage() {
+                     val accentPrimaryTextColor: Int, val accentSecondaryTextColor: Int, val accentDisabledTextColor: Int,
+                     val primaryActiveIconColor: Int, val primaryInactiveIconColor: Int,
+                     val accentActiveIconColor: Int, val accentInactiveIconColor: Int) : ColorPackage() {
 
     constructor(primaryColor: Int, accentColor: Int) : this(primaryColor, DynamicColorsUtil.darken(primaryColor), accentColor, DynamicColorsUtil.darken(accentColor))
 
@@ -45,9 +45,9 @@ class UIColorPackage(val primaryColor: Int, val primaryDarkColor: Int,
             if (DynamicColorsUtil.isColorLight(accentColor)) ColorConstants.ICON_COLOR_INACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_INACTIVE_DARK_BG)
 }
 
-class DominantColorPackage(val dominantColor: Int, val dominantColorDark: Int,
-                           val dominantTextColor: Int, val dominantSecondaryTextColor: Int, val dominantDisabledTextColors: Int,
-                           val dominantIconActiveColor: Int, val dominantIconInactiveColor: Int): ColorPackage() {
+class DominantColorPackage(val dominantColor: Int, val dominantDarkColor: Int,
+                           val dominantPrimaryTextColor: Int, val dominantSecondaryTextColor: Int, val dominantDisabledTextColor: Int,
+                           val dominantActiveIconColorColor: Int, val dominantInactiveIconColor: Int) : ColorPackage() {
 
     constructor(dominantColor: Int) : this(dominantColor, DynamicColorsUtil.darken(dominantColor))
 

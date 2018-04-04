@@ -24,7 +24,7 @@ import android.net.Uri
 import java.io.File
 import java.net.URL
 
-sealed class DefaultSources {
+class DefaultSources {
 
     class FileSource(private val file: File) : DynamicColors.BitmapSource {
         override fun getBitmap(): Bitmap? = BitmapFactory.decodeFile(file.path)

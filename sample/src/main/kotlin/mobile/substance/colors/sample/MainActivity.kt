@@ -56,20 +56,20 @@ class MainActivity : AppCompatActivity() {
             R.id.accent_light -> accentMode = DynamicColors.MODE_RANGE_ACCENT_LIGHT
             R.id.accent_dark -> accentMode = DynamicColors.MODE_RANGE_ACCENT_DARK
         }
-        val colors = await { DynamicColors.from(this@MainActivity, Uri.parse(findViewById<EditText>(R.id.source).text.toString())).extractUIColors(primaryMode!! or accentMode!!) }
+        val colors = await { DynamicColors.from(this@MainActivity, Uri.parse(findViewById<EditText>(R.id.source).text.toString())).extractUiColors(primaryMode!! or accentMode!!) }
         findViewById<TextView>(R.id.primaryText).apply {
             setBackgroundColor(colors.primaryColor)
-            setTextColor(colors.primaryTextColor)
+            setTextColor(colors.primaryPrimaryTextColor)
             text = DynamicColorsUtil.hexStringForInt(colors.primaryColor)
         }
         findViewById<TextView>(R.id.primaryDarkText).apply {
             setBackgroundColor(colors.primaryDarkColor)
-            setTextColor(colors.primaryTextColor)
+            setTextColor(colors.primaryPrimaryTextColor)
             text = DynamicColorsUtil.hexStringForInt(colors.primaryDarkColor)
         }
         findViewById<TextView>(R.id.accentText).apply {
             setBackgroundColor(colors.accentColor)
-            setTextColor(colors.accentTextColor)
+            setTextColor(colors.accentPrimaryTextColor)
             text = DynamicColorsUtil.hexStringForInt(colors.accentColor)
         }
     }
