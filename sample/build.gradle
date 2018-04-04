@@ -35,6 +35,6 @@ android {
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'co.metalab.asyncawait:asyncawait:1.0.0'
-    compile project(':library')
+    compile project(':dynamic-colors-core')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 }

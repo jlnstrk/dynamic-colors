@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include ':sample', ':library', ':extensions-glide'
+include ':sample', ':dynamic-colors-core', ':dynamic-colors-glide'
