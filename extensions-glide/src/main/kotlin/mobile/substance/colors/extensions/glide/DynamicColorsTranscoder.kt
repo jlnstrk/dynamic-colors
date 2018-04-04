@@ -47,11 +47,9 @@ class DynamicColorsTranscoder(private val context: Context) : ResourceTranscoder
                         .extractUIColors(primaryMode or accentMode)
             }
             DominantColorPackage::class.java -> DynamicColors.from(bitmap).extractDominantColor()
-            else -> throw IllegalArgumentException("option $TRANSCODE_TYPE_PARAM must bei either " +
+            else -> throw IllegalArgumentException("option $TRANSCODE_TYPE_PARAM must be either " +
                     "Class<UIColorPackage> or Class<DominantColorPackage>, it was ${typeClass.name}")
         }
-
-
         val wrapper = DynamicColorsWrapper(context.resources, bitmap, colorPackage)
         return DynamicColorsResource(wrapper, bitmapPool)
     }
