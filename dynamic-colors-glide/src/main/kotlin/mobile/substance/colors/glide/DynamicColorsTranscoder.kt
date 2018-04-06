@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package mobile.substance.colors.extensions.glide
+package mobile.substance.colors.glide
 
 import android.content.Context
 import android.graphics.Bitmap

@@ -23,11 +23,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
-import co.metalab.asyncawait.async
 import mobile.substance.colors.DynamicColors
 import mobile.substance.colors.DynamicColorsUtil
+import mobile.substance.colors.UIColorPackage
+import mobile.substance.colors.async.DynamicColorsCallback
+import mobile.substance.colors.async.extractUiColors
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DynamicColorsCallback<UIColorPackage> {
     private lateinit var radioGroupPrimary: RadioGroup
     private lateinit var radioGroupAccent: RadioGroup
 
@@ -43,7 +45,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun generate() = async {
+    override fun onColorsReady(colorPackage: UIColorPackage) {
+        findViewById<TextView>(R.id.primaryText).apply {
+            setBackgroundColor(colorPackage.primaryColor)
+            setTextColor(colorPackage.primaryPrimaryTextColor)
+            text = DynamicColorsUtil.hexStringForInt(colorPackage.primaryColor)
+        }
+        findViewById<TextView>(R.id.primaryDarkText).apply {
+            setBackgroundColor(colorPackage.primaryDarkColor)
+            setTextColor(colorPackage.primaryPrimaryTextColor)
+            text = DynamicColorsUtil.hexStringForInt(colorPackage.primaryDarkColor)
+        }
+        findViewById<TextView>(R.id.accentText).apply {
+            setBackgroundColor(colorPackage.accentColor)
+            setTextColor(colorPackage.accentPrimaryTextColor)
+            text = DynamicColorsUtil.hexStringForInt(colorPackage.accentColor)
+        }
+    }
+
+    private fun generate() {
         var primaryMode: Int? = null
         when (radioGroupPrimary.checkedRadioButtonId) {
             R.id.primary_neutral -> primaryMode = DynamicColors.MODE_RANGE_PRIMARY_NEUTRAL
@@ -56,22 +76,9 @@ class MainActivity : AppCompatActivity() {
             R.id.accent_light -> accentMode = DynamicColors.MODE_RANGE_ACCENT_LIGHT
             R.id.accent_dark -> accentMode = DynamicColors.MODE_RANGE_ACCENT_DARK
         }
-        val colors = await { DynamicColors.from(this@MainActivity, Uri.parse(findViewById<EditText>(R.id.source).text.toString())).extractUiColors(primaryMode!! or accentMode!!) }
-        findViewById<TextView>(R.id.primaryText).apply {
-            setBackgroundColor(colors.primaryColor)
-            setTextColor(colors.primaryPrimaryTextColor)
-            text = DynamicColorsUtil.hexStringForInt(colors.primaryColor)
-        }
-        findViewById<TextView>(R.id.primaryDarkText).apply {
-            setBackgroundColor(colors.primaryDarkColor)
-            setTextColor(colors.primaryPrimaryTextColor)
-            text = DynamicColorsUtil.hexStringForInt(colors.primaryDarkColor)
-        }
-        findViewById<TextView>(R.id.accentText).apply {
-            setBackgroundColor(colors.accentColor)
-            setTextColor(colors.accentPrimaryTextColor)
-            text = DynamicColorsUtil.hexStringForInt(colors.accentColor)
-        }
+        DynamicColors.from(this@MainActivity, Uri.parse(findViewById<EditText>(R.id.source).text.toString()))
+                .extractUiColors(primaryMode!! or accentMode!!, this)
+
     }
 
 

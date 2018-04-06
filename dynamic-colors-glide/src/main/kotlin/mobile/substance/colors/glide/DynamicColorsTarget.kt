@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package mobile.substance.colors.extensions.glide
+package mobile.substance.colors.glide
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -58,7 +58,7 @@ abstract class DynamicColorsTarget<CP : ColorPackage>(
     }
 
     class DominantImpl(imageView: ImageView,
-                 onColorsExtractedListener: OnColorsExtractedListener<DominantColorPackage>)
+                       onColorsExtractedListener: OnColorsExtractedListener<DominantColorPackage>)
         : DynamicColorsTarget<DominantColorPackage>(imageView,
             onColorsExtractedListener) {
 

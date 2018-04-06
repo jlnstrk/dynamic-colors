@@ -18,11 +18,12 @@ ext.versions = [
         mavenPlugin: "2.0",
         name: "1.0.0",
         code: 1,
-        minSdk : 15,
+        minSdk: 15,
         targetSdk: 26,
         compileSdk: 27,
         buildTools: "27.0.3",
-        kotlin : "1.2.30",
-        supportLibrary : "27.1.0",
-        glide : "4.6.1"
+        kotlin: "1.2.30",
+        supportLibrary: "27.1.0",
+        glide: "4.6.1",
+        coroutines: '0.22.5'
 ]

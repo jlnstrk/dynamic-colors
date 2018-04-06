@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package mobile.substance.colors.extensions.glide
+package mobile.substance.colors.glide
 
 import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool

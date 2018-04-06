@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package mobile.substance.colors.extensions.glide
+package mobile.substance.colors.glide
 
-import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Registry
-import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.module.LibraryGlideModule
+import android.graphics.drawable.BitmapDrawable
+import mobile.substance.colors.ColorPackage
 
 /**
  * @author Julian Ostarek
  */
-@GlideModule
-class DynamicColorsGlideModule : LibraryGlideModule() {
-
-    override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        registry.register(Bitmap::class.java, DynamicColorsWrapper::class.java,
-                DynamicColorsTranscoder(context))
-    }
-
-}
+open class DynamicColorsWrapper<out CP : ColorPackage>(resources: Resources, bitmap: Bitmap,
+                                                       val colorPackage: CP) : BitmapDrawable(resources, bitmap)

@@ -14,4 +14,4 @@
   ~ limitations under the License.
   -->
 
-<manifest package="mobile.substance.colors.extensions.glide" />
+<manifest package="mobile.substance.colors.glide" />

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/dynamic-colors.iml" filepath="$PROJECT_DIR$/dynamic-colors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dynamic-colors-async/dynamic-colors-async.iml" filepath="$PROJECT_DIR$/dynamic-colors-async/dynamic-colors-async.iml" />
       <module fileurl="file://$PROJECT_DIR$/dynamic-colors-core/dynamic-colors-core.iml" filepath="$PROJECT_DIR$/dynamic-colors-core/dynamic-colors-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/dynamic-colors-glide/dynamic-colors-glide.iml" filepath="$PROJECT_DIR$/dynamic-colors-glide/dynamic-colors-glide.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />

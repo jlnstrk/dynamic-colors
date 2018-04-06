@@ -14,4 +14,14 @@
  * limitations under the License.
  */
 
-include ':sample', ':dynamic-colors-core', ':dynamic-colors-glide', ':dynamic-colors-async'
+package mobile.substance.colors.async
+
+import android.support.annotation.UiThread
+import mobile.substance.colors.ColorPackage
+
+@UiThread
+interface DynamicColorsCallback<in CP : ColorPackage> {
+
+    fun onColorsReady(colorPackage: CP)
+
+}
