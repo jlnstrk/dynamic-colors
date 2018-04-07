@@ -47,7 +47,7 @@ class UIColorPackage(val primaryColor: Int, val primaryDarkColor: Int,
 
 class DominantColorPackage(val dominantColor: Int, val dominantDarkColor: Int,
                            val dominantPrimaryTextColor: Int, val dominantSecondaryTextColor: Int, val dominantDisabledTextColor: Int,
-                           val dominantActiveIconColorColor: Int, val dominantInactiveIconColor: Int) : ColorPackage() {
+                           val dominantActiveIconColor: Int, val dominantInactiveIconColor: Int) : ColorPackage() {
 
     constructor(dominantColor: Int) : this(dominantColor, DynamicColorsUtil.darken(dominantColor))
 
