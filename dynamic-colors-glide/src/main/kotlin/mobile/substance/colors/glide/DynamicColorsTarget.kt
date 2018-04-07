@@ -36,12 +36,12 @@ abstract class DynamicColorsTarget<CP : ColorPackage>(
     final override fun onResourceReady(resource: DynamicColorsWrapper<CP>,
                                        transition: Transition<in DynamicColorsWrapper<CP>>?) {
         super.onResourceReady(resource, transition)
-        onColorsExtractedListener.invoke(resource.bitmap, resource.colorPackage)
+        onColorsExtractedListener.onColorsExtracted(resource.bitmap, resource.colorPackage)
     }
 
     final override fun onLoadFailed(errorDrawable: Drawable?) {
         super.onLoadFailed(errorDrawable)
-        onColorsExtractedListener.invoke(null, getDefaultColorPackage())
+        onColorsExtractedListener.onColorsExtracted(null, getDefaultColorPackage())
     }
 
     abstract fun getDefaultColorPackage(): CP

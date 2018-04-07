@@ -16,7 +16,6 @@
 
 package mobile.substance.colors.glide
 
-import android.graphics.Bitmap
 import android.widget.ImageView
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.RequestManager
@@ -61,15 +60,12 @@ inline fun RequestBuilder<DynamicColorsWrapper<UIColorPackage>>.accentMode(accen
             .set(Option.memory(DynamicColorsTranscoder.UI_COLORS_MODE_ACCENT), accentMode))
 }
 
-typealias OnColorsExtractedListener<CP> = (source: Bitmap?, colorPackage: CP?) -> Unit
-
-inline fun <reified CP : ColorPackage> RequestBuilder<DynamicColorsWrapper<CP>>.into(imageView: ImageView,
-                                                                                     noinline onColorsExtractedListener: OnColorsExtractedListener<CP>): DynamicColorsTarget<CP> {
+inline fun <reified CP : ColorPackage> RequestBuilder<DynamicColorsWrapper<CP>>.into(imageView: ImageView, onColorsExtracted: OnColorsExtractedListener<CP>): DynamicColorsTarget<CP> {
     val target = when (CP::class.java) {
         UIColorPackage::class.java -> DynamicColorsTarget.UIImpl(imageView,
-                onColorsExtractedListener as OnColorsExtractedListener<UIColorPackage>)
+                onColorsExtracted as OnColorsExtractedListener<UIColorPackage>)
         DominantColorPackage::class.java -> DynamicColorsTarget.DominantImpl(imageView,
-                onColorsExtractedListener as OnColorsExtractedListener<DominantColorPackage>)
+                onColorsExtracted as OnColorsExtractedListener<DominantColorPackage>)
         else -> throw IllegalArgumentException("Type parameter 'CP' must be either UIColorPackage " +
                 "or DominantColorPackage")
     }

@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity(), DynamicColorsCallback<UIColorPackage> 
         }
         DynamicColors.from(this@MainActivity, Uri.parse(findViewById<EditText>(R.id.source).text.toString()))
                 .extractUiColors(primaryMode!! or accentMode!!, this)
-
     }
 
 
