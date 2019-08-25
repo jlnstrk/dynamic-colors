@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2019 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,8 @@
 
 package mobile.substance.colors.async
 
-import android.support.annotation.UiThread
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import androidx.annotation.UiThread
+import kotlinx.coroutines.*
 import mobile.substance.colors.DominantColorPackage
 import mobile.substance.colors.DynamicColors
 import mobile.substance.colors.UIColorPackage
@@ -51,16 +47,16 @@ inline fun DynamicColors.extractUiColors(mode: Int, callback: DynamicColorsCallb
 
 @UiThread
 internal inline fun DynamicColors.extractDominantColorAsync(callback: DynamicColorsCallback<DominantColorPackage>): Job {
-    return launch(UI) {
-        val dominantColorPackage = async(CommonPool) { extractDominantColor() }
-        callback.onColorsReady(dominantColorPackage.await())
+    return GlobalScope.launch(Dispatchers.Main) {
+        val dominantColorPackage = withContext(Dispatchers.Default) { extractDominantColor() }
+        callback.onColorsReady(dominantColorPackage)
     }
 }
 
 @UiThread
 internal inline fun DynamicColors.extractUiColorsAsync(mode: Int, callback: DynamicColorsCallback<UIColorPackage>): Job {
-    return launch(UI) {
-        val uiColorPackage = async(CommonPool) { extractUiColors(mode) }
-        callback.onColorsReady(uiColorPackage.await())
+    return GlobalScope.launch(Dispatchers.Main) {
+        val uiColorPackage = withContext(Dispatchers.Default) { extractUiColors(mode) }
+        callback.onColorsReady(uiColorPackage)
     }
 }

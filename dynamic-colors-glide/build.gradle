@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2019 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
@@ -36,8 +37,11 @@ android {
 }
 
 dependencies {
+    api project(':dynamic-colors-core')
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     implementation "com.github.bumptech.glide:annotations:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
-    implementation project(':dynamic-colors-core')
+}
+repositories {
+    mavenCentral()
 }
