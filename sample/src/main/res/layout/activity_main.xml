@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright 2018 Substance Mobile
+  ~ Copyright 2019 Substance Mobile
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
   ~ limitations under the License.
   -->
 
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="0dp"
             android:checkedButton="@+id/accent_neutral"
             android:orientation="vertical"
             app:layout_constraintHorizontal_bias="0.507"
@@ -62,8 +62,8 @@
             android:layout_width="0dp"
             android:layout_height="72dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
             android:gravity="center"
             android:text="PRIMARY"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -75,8 +75,8 @@
             android:layout_width="0dp"
             android:layout_height="72dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
+            android:layout_marginRight="8dp"
             android:gravity="center"
             android:text="PRIMARY DARK"
             app:layout_constraintHorizontal_bias="0.0"
@@ -89,8 +89,8 @@
             android:layout_width="0dp"
             android:layout_height="72dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
+            android:layout_marginRight="8dp"
             android:gravity="center"
             android:text="ACCENT"
             app:layout_constraintHorizontal_bias="0.0"
@@ -98,7 +98,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/primaryDarkText" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -110,26 +110,22 @@
             android:id="@+id/extractUIColors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:text="GENERATE"
-            app:layout_constraintEnd_toStartOf="@+id/generate_strict"
+            app:layout_constraintEnd_toStartOf="@+id/generate"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupPrimary" />
 
         <Button
             android:id="@+id/generate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:text="GENERATE"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/extractUIColors"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupPrimary" />
 
@@ -137,11 +133,11 @@
             android:id="@+id/source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
             android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
             android:hint="Source"
-            android:paddingEnd="16dp"
             android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="https://upload.wikimedia.org/wikipedia/commons/0/03/Panthera_pardus_close_up.jpg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -153,8 +149,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="0dp"
             android:checkedButton="@+id/primary_neutral"
             android:orientation="vertical"
             app:layout_constraintHorizontal_bias="0.446"
@@ -182,6 +178,6 @@
 
         </RadioGroup>
 
-    </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
 

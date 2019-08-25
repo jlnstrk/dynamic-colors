@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2019 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package mobile.substance.colors.async
 
-import android.support.annotation.UiThread
+import androidx.annotation.UiThread
 import mobile.substance.colors.ColorPackage
 
 @UiThread

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2019 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.net.Uri
-import android.support.annotation.WorkerThread
-import android.support.v7.graphics.Palette
-import android.support.v7.graphics.Target
+import androidx.annotation.WorkerThread
 import java.io.File
 
 @WorkerThread
@@ -44,7 +42,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
     private fun extractDominantColor(source: BitmapSource): DominantColorPackage {
         val bitmap = source.getBitmap()
         if (bitmap != null) {
-            val palette = Palette.from(bitmap)
+            val palette = androidx.palette.graphics.Palette.from(bitmap)
                     .maximumColorCount(FAST_MAX_COLOR_COUNT)
                     .generate()
             try {
@@ -62,7 +60,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
     private fun extractUiColors(source: BitmapSource, mode: Int): UIColorPackage {
         val bitmap = source.getBitmap()
         if (bitmap != null) {
-            val primaryTarget = Target.Builder()
+            val primaryTarget = androidx.palette.graphics.Target.Builder()
                     .setPopulationWeight(0.75F)
                     .setLightnessWeight(0.25F)
                     .setTargetLightness(0.675F)
@@ -70,7 +68,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
                     .setMaximumLightness(if (mode and MASK_PRIMARY == MODE_RANGE_PRIMARY_DARK) 0.75F else 1F)
                     .setExclusive(true)
                     .build()
-            val accentTarget = Target.Builder()
+            val accentTarget = androidx.palette.graphics.Target.Builder()
                     .setPopulationWeight(0.5F)
                     .setSaturationWeight(0.2F)
                     .setLightnessWeight(0.3F)
@@ -79,7 +77,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
                     .setMaximumLightness(if (mode and MASK_ACCENT == MODE_RANGE_ACCENT_DARK) 0.75F else 1F)
                     .setExclusive(true)
                     .build()
-            val palette = Palette.from(bitmap)
+            val palette = androidx.palette.graphics.Palette.from(bitmap)
                     .clearTargets()
                     .addTarget(primaryTarget)
                     .addTarget(accentTarget)
