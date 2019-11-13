@@ -43,10 +43,11 @@ class DynamicColorsTranscoder(private val context: Context) : ResourceTranscoder
                         DynamicColors.MODE_RANGE_PRIMARY_NEUTRAL))
                 val accentMode = options.get(Option.memory(UI_COLORS_MODE_ACCENT,
                         DynamicColors.MODE_RANGE_ACCENT_NEUTRAL))
-                DynamicColors.from(bitmap)
+                DynamicColors.from(context, bitmap)
                         .extractUiColors(primaryMode!! or accentMode!!)
             }
-            DominantColorPackage::class.java -> DynamicColors.from(bitmap).extractDominantColor()
+            DominantColorPackage::class.java -> DynamicColors.from(context, bitmap)
+                    .extractDominantColor()
             else -> throw IllegalArgumentException("option $TRANSCODE_TYPE_PARAM must be either " +
                     "Class<UIColorPackage> or Class<DominantColorPackage>, it was ${typeClass!!.name}")
         }

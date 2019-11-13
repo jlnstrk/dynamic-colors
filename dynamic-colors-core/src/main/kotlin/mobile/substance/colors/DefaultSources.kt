@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2019 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,15 +26,15 @@ import java.net.URL
 
 class DefaultSources {
 
-    class FileSource(private val file: File) : DynamicColors.BitmapSource {
+    class FileSource(override val context: Context, private val file: File) : DynamicColors.BitmapSource() {
         override fun getBitmap(): Bitmap? = BitmapFactory.decodeFile(file.path)
     }
 
-    class ResourceSource(private val res: Resources, private val resId: Int) : DynamicColors.BitmapSource {
+    class ResourceSource(override val context: Context, private val res: Resources, private val resId: Int) : DynamicColors.BitmapSource() {
         override fun getBitmap(): Bitmap? = BitmapFactory.decodeResource(res, resId)
     }
 
-    class UriSource(private val context: Context, private val uri: Uri) : DynamicColors.BitmapSource {
+    class UriSource(override val context: Context, private val uri: Uri) : DynamicColors.BitmapSource() {
         override fun getBitmap(): Bitmap? {
             return when (uri.scheme) {
                 "file" -> BitmapFactory.decodeFile(uri.path)
@@ -44,7 +44,7 @@ class DefaultSources {
         }
     }
 
-    class CheapSource(private val bitmap: Bitmap?) : DynamicColors.BitmapSource {
+    class CheapSource(override val context: Context, private val bitmap: Bitmap?) : DynamicColors.BitmapSource() {
         override fun getBitmap(): Bitmap? = bitmap
     }
 

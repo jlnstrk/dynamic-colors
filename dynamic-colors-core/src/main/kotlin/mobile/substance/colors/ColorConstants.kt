@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2019 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +19,21 @@ package mobile.substance.colors
 /**
  * This class contains material values for text and icon colors.
  */
-object ColorConstants {
+internal object ColorConstants {
 
-    //Text colors
-    const val TEXT_COLOR_LIGHT_BG = 0xDE000000.toInt()
-    const val TEXT_COLOR_SECONDARY_LIGHT_BG = 0x8A000000.toInt()
-    const val TEXT_COLOR_DISABLED_LIGHT_BG = 0x61000000.toInt()
+    /* Text colors */
+    internal const val TEXT_COLOR_LIGHT_BG = 0xDE000000.toInt()
+    internal const val TEXT_COLOR_SECONDARY_LIGHT_BG = 0x8A000000.toInt()
+    internal const val TEXT_COLOR_DISABLED_LIGHT_BG = 0x61000000.toInt()
 
-    const val TEXT_COLOR_DARK_BG = 0xFFFFFFFF.toInt()
-    const val TEXT_COLOR_SECONDARY_DARK_BG = 0xB3FFFFFF.toInt()
-    const val TEXT_COLOR_DISABLED_DARK_BG = 0x80FFFFFF.toInt()
-    
-    //Icon colors
-    const val ICON_COLOR_ACTIVE_LIGHT_BG = 0x8A000000.toInt()
-    const val ICON_COLOR_INACTIVE_LIGHT_BG = 0x42000000.toInt()
+    internal const val TEXT_COLOR_DARK_BG = 0xFFFFFFFF.toInt()
+    internal const val TEXT_COLOR_SECONDARY_DARK_BG = 0xB3FFFFFF.toInt()
+    internal const val TEXT_COLOR_DISABLED_DARK_BG = 0x80FFFFFF.toInt()
 
-    const val ICON_COLOR_ACTIVE_DARK_BG = 0xFFFFFFFF.toInt()
-    const val ICON_COLOR_INACTIVE_DARK_BG = 0x4DFFFFFF.toInt()
+    /* Icon colors */
+    internal const val ICON_COLOR_ACTIVE_LIGHT_BG = 0x8A000000.toInt()
+    internal const val ICON_COLOR_INACTIVE_LIGHT_BG = 0x42000000.toInt()
+
+    internal const val ICON_COLOR_ACTIVE_DARK_BG = 0xFFFFFFFF.toInt()
+    internal const val ICON_COLOR_INACTIVE_DARK_BG = 0x4DFFFFFF.toInt()
 }

@@ -21,6 +21,8 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.annotation.WorkerThread
+import androidx.palette.graphics.Palette
+import androidx.palette.graphics.Target
 import java.io.File
 
 @WorkerThread
@@ -42,7 +44,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
     private fun extractDominantColor(source: BitmapSource): DominantColorPackage {
         val bitmap = source.getBitmap()
         if (bitmap != null) {
-            val palette = androidx.palette.graphics.Palette.from(bitmap)
+            val palette = Palette.from(bitmap)
                     .maximumColorCount(FAST_MAX_COLOR_COUNT)
                     .generate()
             try {
@@ -54,13 +56,13 @@ class DynamicColors private constructor(private val from: BitmapSource) {
                 ignored.printStackTrace()
             }
         }
-        return DynamicColorsOptions.defaultDominantColor.invoke()
+        return DynamicColorsOptions.defaultDominantColor.invoke(source.context)
     }
 
     private fun extractUiColors(source: BitmapSource, mode: Int): UIColorPackage {
         val bitmap = source.getBitmap()
         if (bitmap != null) {
-            val primaryTarget = androidx.palette.graphics.Target.Builder()
+            val primaryTarget = Target.Builder()
                     .setPopulationWeight(0.75F)
                     .setLightnessWeight(0.25F)
                     .setTargetLightness(0.675F)
@@ -68,7 +70,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
                     .setMaximumLightness(if (mode and MASK_PRIMARY == MODE_RANGE_PRIMARY_DARK) 0.75F else 1F)
                     .setExclusive(true)
                     .build()
-            val accentTarget = androidx.palette.graphics.Target.Builder()
+            val accentTarget = Target.Builder()
                     .setPopulationWeight(0.5F)
                     .setSaturationWeight(0.2F)
                     .setLightnessWeight(0.3F)
@@ -77,7 +79,7 @@ class DynamicColors private constructor(private val from: BitmapSource) {
                     .setMaximumLightness(if (mode and MASK_ACCENT == MODE_RANGE_ACCENT_DARK) 0.75F else 1F)
                     .setExclusive(true)
                     .build()
-            val palette = androidx.palette.graphics.Palette.from(bitmap)
+            val palette = Palette.from(bitmap)
                     .clearTargets()
                     .addTarget(primaryTarget)
                     .addTarget(accentTarget)
@@ -92,12 +94,15 @@ class DynamicColors private constructor(private val from: BitmapSource) {
                 ignored.printStackTrace()
             }
         }
-        return DynamicColorsOptions.defaultUIColors.invoke()
+        return DynamicColorsOptions.defaultUIColors.invoke(source.context)
     }
 
     @WorkerThread
-    interface BitmapSource {
-        fun getBitmap(): Bitmap?
+    abstract class BitmapSource {
+        abstract val context: Context
+
+        abstract fun getBitmap(): Bitmap?
+
     }
 
     companion object {
@@ -112,19 +117,19 @@ class DynamicColors private constructor(private val from: BitmapSource) {
         const val FAST_MAX_COLOR_COUNT = 10
 
         @JvmStatic
-        fun from(bitmap: Bitmap?): DynamicColors = DynamicColors(DefaultSources.CheapSource(bitmap))
+        fun from(context: Context, bitmap: Bitmap?): DynamicColors = DynamicColors(DefaultSources.CheapSource(context, bitmap))
 
         @JvmStatic
         fun from(context: Context, uri: Uri): DynamicColors = DynamicColors(DefaultSources.UriSource(context, uri))
 
         @JvmStatic
-        fun from(path: String): DynamicColors = DynamicColors(DefaultSources.FileSource(File(path)))
+        fun from(context: Context, path: String): DynamicColors = DynamicColors(DefaultSources.FileSource(context, File(path)))
 
         @JvmStatic
-        fun from(file: File): DynamicColors = DynamicColors(DefaultSources.FileSource(file))
+        fun from(context: Context, file: File): DynamicColors = DynamicColors(DefaultSources.FileSource(context, file))
 
         @JvmStatic
-        fun from(res: Resources, resId: Int): DynamicColors = DynamicColors(DefaultSources.ResourceSource(res, resId))
+        fun from(context: Context, res: Resources, resId: Int): DynamicColors = DynamicColors(DefaultSources.ResourceSource(context, res, resId))
 
         @JvmStatic
         fun from(source: BitmapSource): DynamicColors = DynamicColors(source)

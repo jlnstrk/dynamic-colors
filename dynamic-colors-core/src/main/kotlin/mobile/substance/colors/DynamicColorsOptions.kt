@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2019 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,13 @@
 
 package mobile.substance.colors
 
+import android.content.Context
 import android.graphics.Color
 
 /**
  * This class will act as a way to configure this library
  */
 object DynamicColorsOptions {
-    var defaultDominantColor: () -> DominantColorPackage = { DominantColorPackage(Color.WHITE) }
-    var defaultUIColors: () -> UIColorPackage = { UIColorPackage(Color.WHITE, Color.WHITE) }
+    var defaultDominantColor: (Context) -> DominantColorPackage = { DominantColorPackage(Color.WHITE) }
+    var defaultUIColors: (Context) -> UIColorPackage = { UIColorPackage(Color.WHITE, Color.WHITE) }
 }

@@ -52,7 +52,7 @@ abstract class DynamicColorsTarget<CP : ColorPackage>(
             onColorsExtractedListener) {
 
         override fun getDefaultColorPackage(): UIColorPackage {
-            return DynamicColorsOptions.defaultUIColors.invoke()
+            return DynamicColorsOptions.defaultUIColors.invoke(view.context)
         }
 
     }
@@ -63,7 +63,7 @@ abstract class DynamicColorsTarget<CP : ColorPackage>(
             onColorsExtractedListener) {
 
         override fun getDefaultColorPackage(): DominantColorPackage {
-            return DynamicColorsOptions.defaultDominantColor.invoke()
+            return DynamicColorsOptions.defaultDominantColor.invoke(view.context)
         }
 
     }
