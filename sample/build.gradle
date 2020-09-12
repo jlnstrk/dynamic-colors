@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Substance Mobile
+ * Copyright 2020 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation project(':dynamic-colors-core')
     implementation project(':dynamic-colors-async')
     implementation project(':dynamic-colors-glide')

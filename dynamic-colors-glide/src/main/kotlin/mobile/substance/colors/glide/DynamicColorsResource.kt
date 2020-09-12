@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2020 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,14 +24,17 @@ import mobile.substance.colors.ColorPackage
 /**
  * @author Julian Ostarek
  */
-class DynamicColorsResource<out CP : ColorPackage>(private val bitmapWrapper: DynamicColorsWrapper<CP>,
-                                                   private val bitmapPool: BitmapPool) : Resource<DynamicColorsWrapper<*>> {
+class DynamicColorsResource<out CP : ColorPackage>(
+    private val bitmapWrapper: DynamicColorsWrapper<CP>,
+    private val bitmapPool: BitmapPool
+) : Resource<DynamicColorsWrapper<*>> {
 
     override fun getSize(): Int = Util.getBitmapByteSize(bitmapWrapper.bitmap)
 
     override fun recycle() = bitmapPool.put(bitmapWrapper.bitmap)
 
-    override fun getResourceClass(): Class<DynamicColorsWrapper<*>> = DynamicColorsWrapper::class.java
+    override fun getResourceClass(): Class<DynamicColorsWrapper<*>> =
+        DynamicColorsWrapper::class.java
 
     override fun get(): DynamicColorsWrapper<CP> = bitmapWrapper
 

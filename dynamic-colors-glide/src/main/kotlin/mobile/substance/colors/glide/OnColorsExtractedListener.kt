@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2020 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package mobile.substance.colors.glide
 
 import android.graphics.Bitmap
 
-interface OnColorsExtractedListener<in CP> {
+fun interface OnColorsExtractedListener<in CP> {
 
     fun onColorsExtracted(source: Bitmap?, colorPackage: CP)
 

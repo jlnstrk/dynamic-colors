@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2020 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,40 +22,76 @@ package mobile.substance.colors
 
 sealed class ColorPackage
 
-class UIColorPackage(val primaryColor: Int, val primaryDarkColor: Int,
-                     val primaryPrimaryTextColor: Int, val primarySecondaryTextColor: Int, val primaryDisabledTextColor: Int,
-                     val accentColor: Int, val accentDarkColor: Int,
-                     val accentPrimaryTextColor: Int, val accentSecondaryTextColor: Int, val accentDisabledTextColor: Int,
-                     val primaryActiveIconColor: Int, val primaryInactiveIconColor: Int,
-                     val accentActiveIconColor: Int, val accentInactiveIconColor: Int) : ColorPackage() {
+class UIColorPackage(
+    val primaryColor: Int,
+    val primaryDarkColor: Int,
+    val primaryPrimaryTextColor: Int,
+    val primarySecondaryTextColor: Int,
+    val primaryDisabledTextColor: Int,
+    val accentColor: Int,
+    val accentDarkColor: Int,
+    val accentPrimaryTextColor: Int,
+    val accentSecondaryTextColor: Int,
+    val accentDisabledTextColor: Int,
+    val primaryActiveIconColor: Int,
+    val primaryInactiveIconColor: Int,
+    val accentActiveIconColor: Int,
+    val accentInactiveIconColor: Int
+) : ColorPackage() {
 
-    constructor(primaryColor: Int, accentColor: Int) : this(primaryColor, DynamicColorsUtil.darken(primaryColor), accentColor, DynamicColorsUtil.darken(accentColor))
+    constructor(primaryColor: Int, accentColor: Int) : this(
+        primaryColor,
+        primaryColor.darkenedColor(),
+        accentColor,
+        accentColor.darkenedColor()
+    )
 
-    constructor(primaryColor: Int, primaryDarkColor: Int, accentColor: Int, accentDarkColor: Int) : this(primaryColor, primaryDarkColor,
-            if (DynamicColorsUtil.isColorLight(primaryColor)) ColorConstants.TEXT_COLOR_LIGHT_BG else ColorConstants.TEXT_COLOR_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(primaryColor)) ColorConstants.TEXT_COLOR_SECONDARY_LIGHT_BG else ColorConstants.TEXT_COLOR_SECONDARY_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(primaryColor)) ColorConstants.TEXT_COLOR_DISABLED_LIGHT_BG else ColorConstants.TEXT_COLOR_DISABLED_DARK_BG,
-            accentColor, accentDarkColor,
-            if (DynamicColorsUtil.isColorLight(accentColor)) ColorConstants.TEXT_COLOR_LIGHT_BG else ColorConstants.TEXT_COLOR_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(accentColor)) ColorConstants.TEXT_COLOR_SECONDARY_LIGHT_BG else ColorConstants.TEXT_COLOR_SECONDARY_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(accentColor)) ColorConstants.TEXT_COLOR_DISABLED_LIGHT_BG else ColorConstants.TEXT_COLOR_DISABLED_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(primaryColor)) ColorConstants.ICON_COLOR_ACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_ACTIVE_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(primaryColor)) ColorConstants.ICON_COLOR_INACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_INACTIVE_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(accentColor)) ColorConstants.ICON_COLOR_ACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_ACTIVE_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(accentColor)) ColorConstants.ICON_COLOR_INACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_INACTIVE_DARK_BG)
+    constructor(
+        primaryColor: Int,
+        primaryDarkColor: Int,
+        accentColor: Int,
+        accentDarkColor: Int,
+        isPrimaryLight: Boolean = primaryColor.isLightColor(),
+        isAccentLight: Boolean = accentColor.isLightColor()
+    ) : this(
+        primaryColor, primaryDarkColor,
+        if (isPrimaryLight) ColorConstants.TEXT_COLOR_LIGHT_BG else ColorConstants.TEXT_COLOR_DARK_BG,
+        if (isPrimaryLight) ColorConstants.TEXT_COLOR_SECONDARY_LIGHT_BG else ColorConstants.TEXT_COLOR_SECONDARY_DARK_BG,
+        if (isPrimaryLight) ColorConstants.TEXT_COLOR_DISABLED_LIGHT_BG else ColorConstants.TEXT_COLOR_DISABLED_DARK_BG,
+        accentColor, accentDarkColor,
+        if (isAccentLight) ColorConstants.TEXT_COLOR_LIGHT_BG else ColorConstants.TEXT_COLOR_DARK_BG,
+        if (isAccentLight) ColorConstants.TEXT_COLOR_SECONDARY_LIGHT_BG else ColorConstants.TEXT_COLOR_SECONDARY_DARK_BG,
+        if (isAccentLight) ColorConstants.TEXT_COLOR_DISABLED_LIGHT_BG else ColorConstants.TEXT_COLOR_DISABLED_DARK_BG,
+        if (isPrimaryLight) ColorConstants.ICON_COLOR_ACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_ACTIVE_DARK_BG,
+        if (isPrimaryLight) ColorConstants.ICON_COLOR_INACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_INACTIVE_DARK_BG,
+        if (isAccentLight) ColorConstants.ICON_COLOR_ACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_ACTIVE_DARK_BG,
+        if (isAccentLight) ColorConstants.ICON_COLOR_INACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_INACTIVE_DARK_BG
+    )
 }
 
-class DominantColorPackage(val dominantColor: Int, val dominantDarkColor: Int,
-                           val dominantPrimaryTextColor: Int, val dominantSecondaryTextColor: Int, val dominantDisabledTextColor: Int,
-                           val dominantActiveIconColor: Int, val dominantInactiveIconColor: Int) : ColorPackage() {
+class DominantColorPackage(
+    val dominantColor: Int,
+    val dominantDarkColor: Int,
+    val dominantPrimaryTextColor: Int,
+    val dominantSecondaryTextColor: Int,
+    val dominantDisabledTextColor: Int,
+    val dominantActiveIconColor: Int,
+    val dominantInactiveIconColor: Int
+) : ColorPackage() {
 
-    constructor(dominantColor: Int) : this(dominantColor, DynamicColorsUtil.darken(dominantColor))
+    constructor(dominantColor: Int) : this(dominantColor, dominantColor.darkenedColor())
 
-    constructor(dominantColor: Int, dominantColorDark: Int) : this(dominantColor, dominantColorDark,
-            if (DynamicColorsUtil.isColorLight(dominantColor)) ColorConstants.TEXT_COLOR_LIGHT_BG else ColorConstants.TEXT_COLOR_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(dominantColor)) ColorConstants.TEXT_COLOR_SECONDARY_LIGHT_BG else ColorConstants.TEXT_COLOR_SECONDARY_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(dominantColor)) ColorConstants.TEXT_COLOR_DISABLED_LIGHT_BG else ColorConstants.TEXT_COLOR_DISABLED_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(dominantColor)) ColorConstants.ICON_COLOR_ACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_ACTIVE_DARK_BG,
-            if (DynamicColorsUtil.isColorLight(dominantColor)) ColorConstants.ICON_COLOR_INACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_INACTIVE_DARK_BG)
+    constructor(
+        dominantColor: Int,
+        dominantColorDark: Int,
+        isLight: Boolean = dominantColor.isLightColor()
+    ) : this(
+        dominantColor, dominantColorDark,
+        if (isLight) ColorConstants.TEXT_COLOR_LIGHT_BG else ColorConstants.TEXT_COLOR_DARK_BG,
+        if (isLight) ColorConstants.TEXT_COLOR_SECONDARY_LIGHT_BG else ColorConstants.TEXT_COLOR_SECONDARY_DARK_BG,
+        if (isLight) ColorConstants.TEXT_COLOR_DISABLED_LIGHT_BG else ColorConstants.TEXT_COLOR_DISABLED_DARK_BG,
+        if (isLight) ColorConstants.ICON_COLOR_ACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_ACTIVE_DARK_BG,
+        if (isLight) ColorConstants.ICON_COLOR_INACTIVE_LIGHT_BG else ColorConstants.ICON_COLOR_INACTIVE_DARK_BG
+    )
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2020 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,5 +24,7 @@ import mobile.substance.colors.ColorPackage
 /**
  * @author Julian Ostarek
  */
-open class DynamicColorsWrapper<out CP : ColorPackage>(resources: Resources, bitmap: Bitmap,
-                                                       val colorPackage: CP) : BitmapDrawable(resources, bitmap)
+open class DynamicColorsWrapper<out CP : ColorPackage>(
+    resources: Resources, bitmap: Bitmap,
+    val colorPackage: CP
+) : BitmapDrawable(resources, bitmap)

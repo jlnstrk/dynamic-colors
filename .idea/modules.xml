@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/dynamic-colors.iml" filepath="$PROJECT_DIR$/dynamic-colors.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dynamic-colors-async/dynamic-colors-async.iml" filepath="$PROJECT_DIR$/dynamic-colors-async/dynamic-colors-async.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dynamic-colors-core/dynamic-colors-core.iml" filepath="$PROJECT_DIR$/dynamic-colors-core/dynamic-colors-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dynamic-colors-glide/dynamic-colors-glide.iml" filepath="$PROJECT_DIR$/dynamic-colors-glide/dynamic-colors-glide.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dynamic-colors.iml" filepath="$PROJECT_DIR$/dynamic-colors.iml" group="dynamic-colors" />
+      <module fileurl="file://$PROJECT_DIR$/dynamic-colors-async/dynamic-colors-async.iml" filepath="$PROJECT_DIR$/dynamic-colors-async/dynamic-colors-async.iml" group="dynamic-colors/dynamic-colors-async" />
+      <module fileurl="file://$PROJECT_DIR$/dynamic-colors-core/dynamic-colors-core.iml" filepath="$PROJECT_DIR$/dynamic-colors-core/dynamic-colors-core.iml" group="dynamic-colors/dynamic-colors-core" />
+      <module fileurl="file://$PROJECT_DIR$/dynamic-colors-glide/dynamic-colors-glide.iml" filepath="$PROJECT_DIR$/dynamic-colors-glide/dynamic-colors-glide.iml" group="dynamic-colors/dynamic-colors-glide" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" group="dynamic-colors/sample" />
     </modules>
   </component>
 </project>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Substance Mobile
+ * Copyright 2020 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,10 @@ import com.bumptech.glide.module.LibraryGlideModule
 class DynamicColorsModule : LibraryGlideModule() {
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        registry.register(Bitmap::class.java, DynamicColorsWrapper::class.java,
-                DynamicColorsTranscoder(context))
+        registry.register(
+            Bitmap::class.java, DynamicColorsWrapper::class.java,
+            DynamicColorsTranscoder(context)
+        )
     }
 
 }

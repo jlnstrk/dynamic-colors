@@ -34,23 +34,36 @@ class DynamicColorsTranscoder(private val context: Context) : ResourceTranscoder
         get() = Glide.get(context).bitmapPool
 
     @Suppress("IMPLICIT_CAST_TO_ANY")
-    override fun transcode(toTranscode: Resource<Bitmap>, options: Options): Resource<DynamicColorsWrapper<*>> {
+    override fun transcode(
+        toTranscode: Resource<Bitmap>,
+        options: Options
+    ): Resource<DynamicColorsWrapper<*>> {
         val bitmap = toTranscode.get()
-        val typeClass = options[Option.memory<Class<*>>(TRANSCODE_TYPE_PARAM)]
-        val colorPackage = when (typeClass) {
-            UIColorPackage::class.java -> {
-                val primaryMode = options.get(Option.memory(UI_COLORS_MODE_PRIMARY,
-                        DynamicColors.MODE_RANGE_PRIMARY_NEUTRAL))
-                val accentMode = options.get(Option.memory(UI_COLORS_MODE_ACCENT,
-                        DynamicColors.MODE_RANGE_ACCENT_NEUTRAL))
-                DynamicColors.from(context, bitmap)
+        val colorPackage =
+            when (val typeClass = options[Option.memory<Class<*>>(TRANSCODE_TYPE_PARAM)]) {
+                UIColorPackage::class.java -> {
+                    val primaryMode = options.get(
+                        Option.memory(
+                            UI_COLORS_MODE_PRIMARY,
+                            DynamicColors.MODE_RANGE_PRIMARY_NEUTRAL
+                        )
+                    )
+                    val accentMode = options.get(
+                        Option.memory(
+                            UI_COLORS_MODE_ACCENT,
+                            DynamicColors.MODE_RANGE_ACCENT_NEUTRAL
+                        )
+                    )
+                    DynamicColors.from(context, bitmap)
                         .extractUiColors(primaryMode!! or accentMode!!)
-            }
-            DominantColorPackage::class.java -> DynamicColors.from(context, bitmap)
+                }
+                DominantColorPackage::class.java -> DynamicColors.from(context, bitmap)
                     .extractDominantColor()
-            else -> throw IllegalArgumentException("option $TRANSCODE_TYPE_PARAM must be either " +
-                    "Class<UIColorPackage> or Class<DominantColorPackage>, it was ${typeClass!!.name}")
-        }
+                else -> throw IllegalArgumentException(
+                    "option $TRANSCODE_TYPE_PARAM must be either " +
+                            "Class<UIColorPackage> or Class<DominantColorPackage>, it was ${typeClass!!.name}"
+                )
+            }
         val wrapper = DynamicColorsWrapper(context.resources, bitmap, colorPackage)
         return DynamicColorsResource(wrapper, bitmapPool)
     }

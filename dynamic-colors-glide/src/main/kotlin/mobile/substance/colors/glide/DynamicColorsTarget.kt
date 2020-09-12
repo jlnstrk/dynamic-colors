@@ -26,15 +26,17 @@ import mobile.substance.colors.DynamicColorsOptions
 import mobile.substance.colors.UIColorPackage
 
 abstract class DynamicColorsTarget<CP : ColorPackage>(
-        imageView: ImageView, private val onColorsExtractedListener: OnColorsExtractedListener<CP>)
-    : ImageViewTarget<DynamicColorsWrapper<CP>>(imageView) {
+    imageView: ImageView, private val onColorsExtractedListener: OnColorsExtractedListener<CP>
+) : ImageViewTarget<DynamicColorsWrapper<CP>>(imageView) {
 
     final override fun setResource(resource: DynamicColorsWrapper<CP>?) {
         view.setImageBitmap(resource?.bitmap)
     }
 
-    final override fun onResourceReady(resource: DynamicColorsWrapper<CP>,
-                                       transition: Transition<in DynamicColorsWrapper<CP>>?) {
+    final override fun onResourceReady(
+        resource: DynamicColorsWrapper<CP>,
+        transition: Transition<in DynamicColorsWrapper<CP>>?
+    ) {
         super.onResourceReady(resource, transition)
         onColorsExtractedListener.onColorsExtracted(resource.bitmap, resource.colorPackage)
     }
@@ -46,24 +48,30 @@ abstract class DynamicColorsTarget<CP : ColorPackage>(
 
     abstract fun getDefaultColorPackage(): CP
 
-    class UIImpl(imageView: ImageView,
-                 onColorsExtractedListener: OnColorsExtractedListener<UIColorPackage>)
-        : DynamicColorsTarget<UIColorPackage>(imageView,
-            onColorsExtractedListener) {
+    class UIImpl(
+        imageView: ImageView,
+        onColorsExtractedListener: OnColorsExtractedListener<UIColorPackage>
+    ) : DynamicColorsTarget<UIColorPackage>(
+        imageView,
+        onColorsExtractedListener
+    ) {
 
         override fun getDefaultColorPackage(): UIColorPackage {
-            return DynamicColorsOptions.defaultUIColors.invoke(view.context)
+            return DynamicColorsOptions.defaultUIColors.providePackage(view.context)
         }
 
     }
 
-    class DominantImpl(imageView: ImageView,
-                       onColorsExtractedListener: OnColorsExtractedListener<DominantColorPackage>)
-        : DynamicColorsTarget<DominantColorPackage>(imageView,
-            onColorsExtractedListener) {
+    class DominantImpl(
+        imageView: ImageView,
+        onColorsExtractedListener: OnColorsExtractedListener<DominantColorPackage>
+    ) : DynamicColorsTarget<DominantColorPackage>(
+        imageView,
+        onColorsExtractedListener
+    ) {
 
         override fun getDefaultColorPackage(): DominantColorPackage {
-            return DynamicColorsOptions.defaultDominantColor.invoke(view.context)
+            return DynamicColorsOptions.defaultDominantColor.providePackage(view.context)
         }
 
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Substance Mobile
+ * Copyright 2020 Substance Mobile
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,10 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import mobile.substance.colors.DynamicColors
-import mobile.substance.colors.DynamicColorsUtil
 import mobile.substance.colors.UIColorPackage
 import mobile.substance.colors.async.DynamicColorsCallback
 import mobile.substance.colors.async.extractUiColors
+import mobile.substance.colors.colorHexString
 
 class MainActivity : AppCompatActivity(), DynamicColorsCallback<UIColorPackage> {
     private lateinit var radioGroupPrimary: RadioGroup
@@ -49,17 +49,17 @@ class MainActivity : AppCompatActivity(), DynamicColorsCallback<UIColorPackage> 
         findViewById<TextView>(R.id.primaryText).apply {
             setBackgroundColor(colorPackage.primaryColor)
             setTextColor(colorPackage.primaryPrimaryTextColor)
-            text = DynamicColorsUtil.hexStringForInt(colorPackage.primaryColor)
+            text = colorPackage.primaryColor.colorHexString()
         }
         findViewById<TextView>(R.id.primaryDarkText).apply {
             setBackgroundColor(colorPackage.primaryDarkColor)
             setTextColor(colorPackage.primaryPrimaryTextColor)
-            text = DynamicColorsUtil.hexStringForInt(colorPackage.primaryDarkColor)
+            text = colorPackage.primaryDarkColor.colorHexString()
         }
         findViewById<TextView>(R.id.accentText).apply {
             setBackgroundColor(colorPackage.accentColor)
             setTextColor(colorPackage.accentPrimaryTextColor)
-            text = DynamicColorsUtil.hexStringForInt(colorPackage.accentColor)
+            text = colorPackage.accentColor.colorHexString()
         }
     }
 
@@ -76,8 +76,11 @@ class MainActivity : AppCompatActivity(), DynamicColorsCallback<UIColorPackage> 
             R.id.accent_light -> accentMode = DynamicColors.MODE_RANGE_ACCENT_LIGHT
             R.id.accent_dark -> accentMode = DynamicColors.MODE_RANGE_ACCENT_DARK
         }
-        DynamicColors.from(this@MainActivity, Uri.parse(findViewById<EditText>(R.id.source).text.toString()))
-                .extractUiColors(primaryMode!! or accentMode!!, this)
+        DynamicColors.from(
+            this@MainActivity,
+            Uri.parse(findViewById<EditText>(R.id.source).text.toString())
+        )
+            .extractUiColors(primaryMode!! or accentMode!!, this)
     }
 
 
